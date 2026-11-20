@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Only Us ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#16001f,#3b0a35,#16001f);
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    text-align:center;
+    padding:35px 20px 20px;
+}
+
+header h1{
+    font-size:38px;
+    color:#ff8fc7;
+}
+
+header p{
+    margin-top:8px;
+    color:#ddd;
+}
+
+.container{
+    width:90%;
+    max-width:900px;
+    margin:auto;
+}
+
+.card{
+    background:rgba(255,255,255,0.09);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:20px;
+    padding:25px;
+    margin:20px 0;
+    backdrop-filter:blur(10px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.card h2{
+    color:#ff9ed1;
+    margin-bottom:12px;
+}
+
+.card p{
+    color:#ddd;
+    line-height:1.6;
+}
+
+button{
+    border:none;
+    padding:12px 20px;
+    margin-top:15px;
+    border-radius:25px;
+    background:linear-gradient(90deg,#ff4f9a,#9d4edd);
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+.mood{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.mood button{
+    background:#ffffff15;
+    border:1px solid #ffffff30;
+}
+
+.mood button:hover{
+    background:#ff4f9a;
+}
+
+#message{
+    margin-top:15px;
+    color:#ffb6d9;
+    font-size:18px;
+    text-align:center;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+}
+
+.feature{
+    background:#ffffff0d;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    border:1px solid #ffffff15;
+}
+
+.feature span{
+    font-size:35px;
+}
+
+.feature h3{
+    margin:10px 0;
+    color:#ffaad4;
+}
+
+input, textarea{
+    width:100%;
+    padding:13px;
+    margin-top:10px;
+    border:none;
+    border-radius:12px;
+    outline:none;
+    background:#ffffff15;
+    color:white;
+}
+
+textarea{
+    height:100px;
+    resize:none;
+}
+
+footer{
+    text-align:center;
+    padding:30px 10px;
+    color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Only Us ❤️</h1>
+    <p>A little place made for two special people ✨</p>
+</header>
+
+<div class="container">
+
+    <!-- Welcome -->
+    <div class="card">
+        <h2>💖 Welcome</h2>
+        <p>
+            This is our little private space where we can keep
+            memories, notes, moods and special moments together.
+        </p>
+    </div>
+
+    <!-- Features -->
+    <div class="card">
+        <h2>✨ Our Space</h2>
+
+        <div class="features">
+
+            <div class="feature">
+                <span>📸</span>
+                <h3>Memories</h3>
+                <p>Save your favourite moments.</p>
+            </div>
+
+            <div class="feature">
+                <span>📝</span>
+                <h3>Notes</h3>
+                <p>Write something special.</p>
+            </div>
+
+            <div class="feature">
+                <span>🎵</span>
+                <h3>Our Song</h3>
+                <p>Keep your favourite song here.</p>
+            </div>
+
+            <div class="feature">
+                <span>🎁</span>
+                <h3>Surprise</h3>
+                <p>Open a little surprise.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Mood -->
+    <div class="card">
+        <h2>😊 How are you feeling?</h2>
+
+        <div class="mood">
+            <button onclick="showMood('Happy 😊')">Happy 😊</button>
+            <button onclick="showMood('Missing You 🥺')">Missing You 🥺</button>
+            <button onclick="showMood('Loved ❤️')">Loved ❤️</button>
+            <button onclick="showMood('Sad 😔')">Sad 😔</button>
+        </div>
+
+        <div id="message"></div>
+    </div>
+
+    <!-- Secret Note -->
+    <div class="card">
+        <h2>💌 Secret Note</h2>
+
+        <textarea id="note"
+        placeholder="Write something special..."></textarea>
+
+        <button onclick="saveNote()">Save Note 💖</button>
+
+        <p id="savedNote"></p>
+    </div>
+
+    <!-- Surprise -->
+    <div class="card">
+        <h2>🎁 Surprise Box</h2>
+
+        <p>There might be something waiting for you...</p>
+
+        <button onclick="surprise()">Open Surprise ✨</button>
+
+        <div id="surpriseText"></div>
+    </div>
+
+</div>
+
+<footer>
+    Made with ❤️ | Only Us
+</footer>
+
+<script>
+
+function showMood(mood){
+    document.getElementById("message").innerHTML =
+    "Your mood today: <b>" + mood + "</b> ❤️";
+}
+
+function saveNote(){
+
+    let note = document.getElementById("note").value;
+
+    if(note.trim() === ""){
+        alert("Please write something first 💌");
+        return;
+    }
+
+    localStorage.setItem("ourNote", note);
+
+    document.getElementById("savedNote").innerHTML =
+    "Saved successfully ❤️";
+}
+
+function surprise(){
+
+    let messages = [
+        "You are special ❤️",
+        "Keep smiling 😊",
+        "Someone is thinking about you 💕",
+        "This little space is just for you ✨",
+        "You made this moment special 🌸"
+    ];
+
+    let random =
+    messages[Math.floor(Math.random() * messages.length)];
+
+    document.getElementById("surpriseText").innerHTML =
+    "<p style='margin-top:15px;color:#ff9ed1;font-size:18px;'>"
+    + random +
+    "</p>";
+}
+
+window.onload = function(){
+
+    let saved = localStorage.getItem("ourNote");
+
+    if(saved){
+        document.getElementById("note").value = saved;
+    }
+
+}
+
+</script>
+
+</body>
+</html>
